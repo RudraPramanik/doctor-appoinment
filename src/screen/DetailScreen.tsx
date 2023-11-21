@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     marginTop: 10,
   },
-  // Modal styles
+  // Modal styles are hare
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
