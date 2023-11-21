@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
-import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  Image,
+  TouchableWithoutFeedback,
+  Modal,
+  Button,
+} from 'react-native';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import DaySelactor from '../component/booking/DaySelactor';
 import TimeSelector from '../component/booking/TimeSelector';
 
 const DetailScreen: React.FC<{ route: any }> = () => {
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   // const { name, description, rating } = route.params;
 
   return (
@@ -50,12 +60,31 @@ const DetailScreen: React.FC<{ route: any }> = () => {
           <View style={styles.sectionContent2top}>
             <TimeSelector />
           </View>
-          <View style={styles.sectionContent2bottm}></View>
+          <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+            <View style={styles.sectionContent2bottm}>
+              <Text style={styles.appoinmentText}>Book appointment now</Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
 
         {/* Content for the second section */}
       </View>
       {/* Content for the second section */}
+      {/* Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Modal content goes here</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
+      {/* modal */}
     </View>
   );
 };
@@ -105,6 +134,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
+  appoinmentText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 8,
+  },
   Image: {
     marginTop: 50,
     height: 280,
@@ -146,6 +181,25 @@ const styles = StyleSheet.create({
     borderColor: '#4d3c5e',
     marginBottom: 2,
     marginTop: 10,
+  },
+  // Modal styles
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+  },
+  modalContent: {
+    backgroundColor: '#221136',
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#4d3c5e',
+  },
+  modalText: {
+    color: 'white',
+    fontSize: 16,
+    marginBottom: 10,
   },
 });
 export default DetailScreen;

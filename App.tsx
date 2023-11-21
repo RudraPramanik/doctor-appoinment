@@ -17,30 +17,32 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={AppScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Detail"
-          component={DetailScreen}
-          options={{
-            headerStyle: {
-              backgroundColor: 'black', // Set the background color to black
-            },
-            headerTintColor: 'white', // Set the text color to white
-          }}
-        />
-        {/* <Stack.Screen
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={AppScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Detail"
+            component={DetailScreen}
+            options={{
+              headerStyle: {
+                backgroundColor: 'black', // Set the background color to black
+              },
+              headerTintColor: 'white', // Set the text color to white
+            }}
+          />
+          {/* <Stack.Screen
           name="booking"
           component={DetailScreen}
           options={{ headerShown: false }}
         /> */}
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
